@@ -44,11 +44,14 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	}
 
 	ds.Duration, err = time.ParseDuration(split[1])
+	if err != nil {
+		return err
+	}
 	if ds.Duration <= 0 {
 		return errors.ErrDurationIsZeroOrLess
 	}
 
-	return err
+	return nil
 }
 
 // ActionInfo выводит информацию о тренировке
